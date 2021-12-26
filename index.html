@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Zany Town Lottery</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/style.css">
+    </head>
+    <body style="background-color: rgb(113, 34, 100); color: rgb(255, 255, 255) !important;">
+
+        <div class="container">
+          <div class="header clearfix">
+            <h3 class="text-muted"><img src="https://bootsnipp.com/bootstrap-builder/libs/builder/icons/image.svg" height="128" width="128" style="">&nbsp;</h3>
+          </div>
+    
+          <div class="jumbotron" style="background-color: rgb(140, 56, 126); color: rgb(255, 255, 255); padding: 1em; text-align: center; ">
+            <h1 class="display-3">Zany Town Lottery</h1>
+            <button id="loginBtn" class="btn btn-lg btn-default" href="#" role="button" style="background-color: rgb(107, 5, 91); color: rgb(255, 255, 255);">Connect Wallet</button>
+            <button id="logoutBtn" class="btn btn-lg btn-default" href="#" role="button" style="background-color: rgb(107, 5, 91); color: rgb(255, 255, 255);">Logout</button>
+            <p>Hi <b><span id="walletAddress"><span></b>,</p>
+            <p class="lead">“Don't underestimate the power of a useless fellow, for the world is taken forward in the path of progress by the rare few who are hailed by the society as useless.”</p>
+            <p class="lead">Crazy enough to guess a number between 1-99? You might just win something.</p>
+            <p><div class="form-group" id="gamePlay" style=""><label><b>Guess the number (100 Zany required stake)</b></label><input type="number" class="form-control" id="yourNumber">
+              <button class="btn btn-lg btn-default" id="submitBtn" href="#" role="button" style="background-color: rgb(107, 5, 91); color: rgb(255, 255, 255);">Submit</button>
+            </div></p>
+          </div>
+    
+          <div class="row marketing">
+            
+    
+            
+          </div>
+    
+          <table class="table" style="">		  <thead>			<tr>			  <th>#</th>			  <th>Total Amount Staked</th>			  <th>Winning Number</th>			  <th>Status</th>			</tr>		  </thead>		  <tbody id="tableBody">			<tr>			  <th scope="row">1</th>			  <td>1000000 Zany</td>			  <td>55</td>			  <td>@mdo</td>			</tr>			<tr>			  <th scope="row">2</th>			  <td>Jacob</td>			  <td>Thornton</td>			  <td>@fat</td>			</tr>			<tr>			  <th scope="row">3</th>			  <td>Larry</td>			  <td>the Bird</td>			  <td>@twitter</td>			</tr>		  </tbody>		</table><div class="container" style=""><div class="m-5"></div></div><footer class="footer" style="color: rgb(255, 255, 255);">
+            <p>© Zany Town</p>
+          </footer>
+    
+        </div> <!-- /container -->
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+        <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+        <script src="./assets/script.js"></script>
+    </body>
+</html>
