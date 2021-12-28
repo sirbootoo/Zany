@@ -909,6 +909,7 @@ async function init() {
       });
       loggedIn();
     } else {
+        loggedOut();
         const isWeb3Active = Moralis.ensureWeb3IsInstalled();
         if (isWeb3Active) {
         console.log("Activated");
@@ -916,7 +917,6 @@ async function init() {
             Web3 = await Moralis.enableWeb3();
             Contract = new Web3.eth.Contract(ABI, contractAddress);
         }
-        loggedOut();
     }
   } catch (err) {
     console.log(err, err.message);
