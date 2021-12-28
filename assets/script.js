@@ -847,11 +847,6 @@ var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAd
 /* Authentication code */
 async function login() {
   try {
-    Moralis.start({
-        serverUrl,
-        appId
-    });
-    console.log("moralis init");
     let user = Moralis.User.current();
     if (!user) {
       user = await Moralis.authenticate({
@@ -893,6 +888,11 @@ function loggedOut() {
 
 async function init() {
   try {
+    Moralis.start({
+        serverUrl,
+        appId
+    });
+    console.log("moralis init");
     tokenMetaData();
     let user = Moralis.User.current();
     if (user) {
