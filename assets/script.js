@@ -907,13 +907,13 @@ async function init() {
       loggedIn();
     } else {
       loggedOut();
-      const isWeb3Active = Moralis.ensureWeb3IsInstalled();
-        if (isWeb3Active) {
-        console.log("Activated");
-        } else {
-            Web3 = await Moralis.enableWeb3();
-            Contract = new Web3.eth.Contract(ABI, contractAddress);
-        }
+    //   const isWeb3Active = Moralis.ensureWeb3IsInstalled();
+    //     if (isWeb3Active) {
+    //     console.log("Activated");
+    //     } else {
+    //         Web3 = await Moralis.enableWeb3();
+    //         Contract = new Web3.eth.Contract(ABI, contractAddress);
+    //     }
     }
   } catch (err) {
     console.log(err, err.message);
