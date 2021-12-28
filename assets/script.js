@@ -872,7 +872,7 @@ async function login() {
 
 async function logOut() {
   await Moralis.User.logOut();
-  loggedOut();
+  loggedOut(true);
   console.log("logged out");
 }
 
@@ -887,11 +887,14 @@ async function loggedIn() {
     document.getElementById("walletAddress").innerHTML = walletAddress;
 }
 
-function loggedOut() {
+function loggedOut(loginout=false) {
   document.getElementById("gamePlay").style.display = "none";
   document.getElementById("loginBtn").style.display = "inline-block";
   document.getElementById("logoutBtn").style.display = "none";
   document.getElementById("walletAddress").innerHTML = "";
+  if(loginout){
+    window.location.reload();
+  }
 }
 
 async function init() {
