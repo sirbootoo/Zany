@@ -902,8 +902,8 @@ async function init() {
     if (user) {
         User = user;
         walletAddress = user.get("ethAddress");
-        listenToEvents("NewEntry");
         loggedIn();
+        listenToEvents("NewEntry");
     } else {
         loggedOut();
     }
