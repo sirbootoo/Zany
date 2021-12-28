@@ -876,7 +876,7 @@ async function logOut() {
   console.log("logged out");
 }
 
-function loggedIn() {
+async function loggedIn() {
     Web3 = await Moralis.enableWeb3();
     Contract = new Web3.eth.Contract(ABI, contractAddress);
     document.getElementById("gamePlay").style.display = "inline-block";
