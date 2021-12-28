@@ -980,6 +980,13 @@ async function init() {
       loggedIn();
     } else {
       loggedOut();
+      const isWeb3Active = Moralis.ensureWeb3IsInstalled();
+        if (isWeb3Active) {
+        console.log("Activated");
+        } else {
+            Web3 = await Moralis.enableWeb3();
+            Contract = new Web3.eth.Contract(ABI, contractAddress);
+        }
     }
   } catch (err) {
     console.log(err, err.message);
@@ -1038,8 +1045,23 @@ function listenToEvents(name) {
   })
 }
 
-function getVariableValues(variable) {
-  return Contract.methods[variable]().call();
+function getVariableValues(variable, input=null) {
+    if (input) {
+      return Contract.methods[variable](input).call();
+    } else {
+      return Contract.methods[variable]().call();
+    }
+}
+
+async function gamesListTableData(){
+    let gamesList = "";
+          for(let i=1; i<=numberOfGamesCreated; i++){
+          const game = await getVariableValues("games", i);
+          console.log(game, "========> Game");
+          gamesList += '<tr>			  <th scope="row">'+i+'</th>			  <td>'+(game.totalAmountDeposited / (10**18))+' Zany</td>			  <td>'+game.winningNumber+'</td>			  <td>'+statuses[game.state]+'</td>			</tr>';
+          }
+          console.log(gamesList, "==========> Games List");
+          document.getElementById("tableBody").innerHTML = gamesList;
 }
 
 init();
