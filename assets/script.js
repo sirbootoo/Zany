@@ -930,6 +930,7 @@ async function tokenMetaData() {
     addresses: contractAddress
   };
   const tokenMetadata = await Moralis.Web3API.token.getTokenMetadata(options);
+  console.log(tokenMetadata, "<================== Token Metadata");
 }
 
 async function interactWithSmartContract(funcName, body) {
