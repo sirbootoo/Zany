@@ -973,7 +973,7 @@ async function init() {
       collectionAddress = await getVariableValues("collectionAddress");
       entryFee = await getVariableValues("entryFee");
       numberOfGamesCreated = await getVariableValues("numberOfGamesCreated");
-    //   gamesListTableData();
+      gamesListTableData();
       User = user;
       walletAddress = user.get("ethAddress");
       listenToEvents("NewEntry");
@@ -1054,14 +1054,19 @@ function getVariableValues(variable, input=null) {
 }
 
 async function gamesListTableData(){
-    let gamesList = "";
-          for(let i=1; i<=numberOfGamesCreated; i++){
-          const game = await getVariableValues("games", i);
-          console.log(game, "========> Game");
-          gamesList += '<tr>			  <th scope="row">'+i+'</th>			  <td>'+(game.totalAmountDeposited / (10**18))+' Zany</td>			  <td>'+game.winningNumber+'</td>			  <td>'+statuses[game.state]+'</td>			</tr>';
-          }
-          console.log(gamesList, "==========> Games List");
-          document.getElementById("tableBody").innerHTML = gamesList;
+    try{
+        console.log("inside gameListTable");
+        let gamesList = "";
+        for(let i=1; i<=numberOfGamesCreated; i++){
+            const game = await getVariableValues("games", i);
+            console.log(game, "========> Game");
+            gamesList += '<tr>			  <th scope="row">'+i+'</th>			  <td>'+(game.totalAmountDeposited / (10**18))+' Zany</td>			  <td>'+game.winningNumber+'</td>			  <td>'+statuses[game.state]+'</td>			</tr>';
+        }
+        console.log(gamesList, "==========> Games List");
+        document.getElementById("tableBody").innerHTML = gamesList;
+    } catch(err) {
+        console.log(err);
+    }
 }
 
 init();
