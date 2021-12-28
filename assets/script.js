@@ -1,10 +1,6 @@
 /* Moralis init code */
 const serverUrl = "https://zybqrnbyirh7.usemoralis.com:2053/server";
 const appId = "HlVrFBIRQr1e9gLneBA9AhbNKliz9b3F5bNMokYR";
-Moralis.start({
-  serverUrl,
-  appId
-});
 var statuses = ["Open", "Closed", "Finished"], numberOfGamesCreated = 0;
 var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAddress = "0x808e2A5B879AaC0D979Bf81e2b84a901cD3c4495",
   ABI = [{
@@ -851,6 +847,11 @@ var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAd
 /* Authentication code */
 async function login() {
   try {
+    Moralis.start({
+        serverUrl,
+        appId
+    });
+    console.log("moralis init");
     let user = Moralis.User.current();
     if (!user) {
       user = await Moralis.authenticate({
