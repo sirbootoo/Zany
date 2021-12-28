@@ -894,19 +894,19 @@ async function init() {
   try {
     tokenMetaData();
     let user = Moralis.User.current();
-    Web3 = await Moralis.enableWeb3();
-    Contract = new Web3.eth.Contract(ABI, contractAddress);
     collectionAddress = await getVariableValues("collectionAddress");
     entryFee = await getVariableValues("entryFee");
     numberOfGamesCreated = await getVariableValues("numberOfGamesCreated");
     await gamesListTableData();
     if (user) {
-      User = user;
-      walletAddress = user.get("ethAddress");
-      listenToEvents("NewEntry");
-      loggedIn();
+        Web3 = await Moralis.enableWeb3();
+        Contract = new Web3.eth.Contract(ABI, contractAddress);
+        User = user;
+        walletAddress = user.get("ethAddress");
+        listenToEvents("NewEntry");
+        loggedIn();
     } else {
-      loggedOut();
+        loggedOut();
     }
   } catch (err) {
     console.log(err, err.message);
