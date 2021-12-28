@@ -894,27 +894,19 @@ async function init() {
   try {
     tokenMetaData();
     let user = Moralis.User.current();
+    Web3 = await Moralis.enableWeb3();
+    Contract = new Web3.eth.Contract(ABI, contractAddress);
+    collectionAddress = await getVariableValues("collectionAddress");
+    entryFee = await getVariableValues("entryFee");
+    numberOfGamesCreated = await getVariableValues("numberOfGamesCreated");
+    await gamesListTableData();
     if (user) {
-      Web3 = await Moralis.enableWeb3();
-      Contract = new Web3.eth.Contract(ABI, contractAddress);
-      collectionAddress = await getVariableValues("collectionAddress");
-      entryFee = await getVariableValues("entryFee");
-      numberOfGamesCreated = await getVariableValues("numberOfGamesCreated");
-      await gamesListTableData();
       User = user;
       walletAddress = user.get("ethAddress");
       listenToEvents("NewEntry");
       loggedIn();
     } else {
       loggedOut();
-      await gamesListTableData();
-    //   const isWeb3Active = Moralis.ensureWeb3IsInstalled();
-    //     if (isWeb3Active) {
-    //     console.log("Activated");
-    //     } else {
-    //         Web3 = await Moralis.enableWeb3();
-    //         Contract = new Web3.eth.Contract(ABI, contractAddress);
-    //     }
     }
   } catch (err) {
     console.log(err, err.message);
@@ -983,7 +975,7 @@ function getVariableValues(variable, input=null) {
 
 async function gamesListTableData(){
     try{
-        console.log("inside gameListTable");
+        console.log("inside gameListTable", numberOfGamesCreated);
         let gamesList = "";
         for(let i=1; i<=numberOfGamesCreated; i++){
             const game = await getVariableValues("games", i);
