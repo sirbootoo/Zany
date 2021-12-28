@@ -935,7 +935,7 @@ async function login() {
           loggedIn();
         })
         .catch(function(error) {
-          console(error);
+          console.log(error);
         });
     }
   } catch (err) {
