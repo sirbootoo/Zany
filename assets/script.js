@@ -907,6 +907,7 @@ async function init() {
       loggedIn();
     } else {
       loggedOut();
+      await gamesListTableData();
     //   const isWeb3Active = Moralis.ensureWeb3IsInstalled();
     //     if (isWeb3Active) {
     //     console.log("Activated");
@@ -950,7 +951,7 @@ async function pickNumber() {
       });
     }
     const payload = await interactWithSmartContract("submitNumber", {
-      _gameID: 1,
+      _gameID: numberOfGamesCreated,
       _number: parseInt(inputVal)
     });
     resetInput();
