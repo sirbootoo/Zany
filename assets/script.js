@@ -973,7 +973,7 @@ async function init() {
       collectionAddress = await getVariableValues("collectionAddress");
       entryFee = await getVariableValues("entryFee");
       numberOfGamesCreated = await getVariableValues("numberOfGamesCreated");
-      gamesListTableData();
+      await gamesListTableData();
       User = user;
       walletAddress = user.get("ethAddress");
       listenToEvents("NewEntry");
