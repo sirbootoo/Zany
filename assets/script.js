@@ -1082,6 +1082,7 @@ function loggedOut(loginout=false) {
 
 async function init() {
   try {
+    document.getElementsByClassName("contractAddress").innerText = contractAddress;
     tokenMetaData();
     let user = Moralis.User.current();
     if (user) {
@@ -1219,4 +1220,3 @@ document.getElementById("loginBtn").onclick = login;
 document.getElementById("logoutBtn").onclick = logOut;
 document.getElementById("submitBtn").onclick = pickNumber;
 document.getElementById("requestBtn").onclick = requestForFunds;
-document.getElementsByClassName("contractAddress").innerText = contractAddress;
