@@ -1141,7 +1141,7 @@ async function requestForFunds() {
     try{
         disableButton("requestBtn");
         const payload = await interactWithSmartContract("requestForFunds", {
-            _gameID: numberOfGamesCreated
+            _game: numberOfGamesCreated
         });
         activateButton("requestBtn");
     } catch(err) {
