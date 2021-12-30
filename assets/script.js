@@ -6,7 +6,7 @@ Moralis.start({
   appId
 });
 var statuses = ["Open", "Closed", "Finished"], numberOfGamesCreated = 0;
-var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAddress = "0xBDfa8ab707c2881374dec349731Dc9dEC6A70044",
+var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAddress = "0x0bcb06AF2710dF49d7ce11120E5d0fe3109046cc",
   ABI = [
 	{
 		"inputs": [],
