@@ -1047,7 +1047,8 @@ async function loggedIn() {
     Web3 = await Moralis.enableWeb3();
     Contract = new Web3.eth.Contract(ABI, contractAddress);
     collectionAddress = await getVariableValues("collectionAddress");
-    entryFee = await getVariableValues("entryFee");      
+    entryFee = await getVariableValues("entryFee");
+    numberOfGamesCreated = await getVariableValues("numberOfEntries");
     document.getElementById("gamePlay").style.display = "inline-block";
     document.getElementById("loginBtn").style.display = "none";
     document.getElementById("logoutBtn").style.display = "inline-block";
