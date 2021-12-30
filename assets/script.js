@@ -885,6 +885,7 @@ async function loggedIn() {
     document.getElementById("loginBtn").style.display = "none";
     document.getElementById("logoutBtn").style.display = "inline-block";
     document.getElementById("walletAddress").innerHTML = walletAddress;
+    await gamesListTableData();
 }
 
 function loggedOut(loginout=false) {
@@ -901,7 +902,6 @@ async function init() {
   try {
     tokenMetaData();
     let user = Moralis.User.current();
-    await gamesListTableData();
     if (user) {
         User = user;
         walletAddress = user.get("ethAddress");
