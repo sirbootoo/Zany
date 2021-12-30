@@ -1119,25 +1119,28 @@ async function interactWithSmartContract(funcName, body) {
 }
 
 async function pickNumber() {
-  const inputVal = document.getElementById("yourNumber").value;
-  try {
-    if (walletAddress.toLowerCase() != collectionAddress.toLowerCase()) {
-      await interactWithSmartContract("approve", {
-        _spender: collectionAddress,
-        _value: Moralis.Units.Token("100", "18")
-      });
+    disableButton("submitBtn");
+    const inputVal = document.getElementById("yourNumber").value;
+    try {
+        if (walletAddress.toLowerCase() != collectionAddress.toLowerCase()) {
+        await interactWithSmartContract("approve", {
+            _spender: collectionAddress,
+            _value: Moralis.Units.Token("100", "18")
+        });
+        }
+        const payload = await interactWithSmartContract("submitNumber", {
+        _gameID: numberOfGamesCreated,
+        _number: parseInt(inputVal)
+        });
+        resetInput();
+        fireAlert("success", "Success!", "Thank you for playing, We will credit your Zany wallet if you guessed correctly.");
+        document.getElementById("inputMessage").innerHTML = "Success!!";
+        activateButton("submitBtn");
+    } catch (err) {
+        console.log(err, err.message);
+        activateButton("submitBtn");
+        throw err
     }
-    const payload = await interactWithSmartContract("submitNumber", {
-      _gameID: numberOfGamesCreated,
-      _number: parseInt(inputVal)
-    });
-    resetInput();
-    fireAlert("success", "Success!", "Thank you for playing, We will credit your Zany wallet if you guessed correctly.");
-    document.getElementById("inputMessage").innerHTML = "Success!!";
-  } catch (err) {
-    console.log(err, err.message);
-    throw err
-  }
 }
 
 async function requestForFunds() {
