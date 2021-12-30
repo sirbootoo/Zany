@@ -1021,7 +1021,7 @@ async function login() {
     let user = Moralis.User.current();
     if (!user) {
       user = await Moralis.authenticate({
-          signingMessage: "Log in using Moralis"
+          signingMessage: "Welcome to Zany Town"
         })
         .then(function(user) {
           User = user;
