@@ -1213,6 +1213,7 @@ function fireAlert(icon, title, text) {
         icon,
         title,
         text,
+        confirmButtonColor: 'rgb(107, 5, 91)',
         footer: 'Love lives here'
       })
 }
