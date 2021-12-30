@@ -1062,6 +1062,7 @@ async function loggedIn() {
     collectionAddress = await getVariableValues("collectionAddress");
     entryFee = await getVariableValues("entryFee");
     numberOfGamesCreated = await getVariableValues("numberOfEntries");
+    console.log(numberOfGamesCreated, "<=============== numberOfGamesCreated")
     document.getElementById("gamePlay").style.display = "inline-block";
     document.getElementById("loginBtn").style.display = "none";
     document.getElementById("logoutBtn").style.display = "inline-block";
@@ -1130,6 +1131,7 @@ async function pickNumber() {
       _number: parseInt(inputVal)
     });
     resetInput();
+    fireAlert("success", "Success!", "Thank you for playing, We will credit your Zany wallet if you guessed correctly.");
     document.getElementById("inputMessage").innerHTML = "Success!!";
   } catch (err) {
     console.log(err, err.message);
@@ -1143,9 +1145,11 @@ async function requestForFunds() {
         const payload = await interactWithSmartContract("requestForFunds", {
             _game: numberOfGamesCreated
         });
+        fireAlert("success", "Success!", entryFee+" Zany has been credited to your wallet.");
         activateButton("requestBtn");
     } catch(err) {
         console.log(err, err.message);
+        fireAlert("error", "Error!", "An error occured during this process");
         activateButton("requestBtn");
         throw err
     }
@@ -1200,10 +1204,19 @@ async function gamesListTableData(){
     }
 }
 
+function fireAlert(icon, title, text) {
+    Swal.fire({
+        icon,
+        title,
+        text,
+        footer: 'Love lives here'
+      })
+}
+
 init();
 
 document.getElementById("loginBtn").onclick = login;
 document.getElementById("logoutBtn").onclick = logOut;
 document.getElementById("submitBtn").onclick = pickNumber;
 document.getElementById("requestBtn").onclick = requestForFunds;
-document.getElementsByClassName("contractAddress").innerHTML = contractAddress;
+document.getElementsByClassName("contractAddress").innerText = contractAddress;
