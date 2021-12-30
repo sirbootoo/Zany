@@ -1149,7 +1149,7 @@ async function requestForFunds() {
         const payload = await interactWithSmartContract("requestForFunds", {
             _game: numberOfGamesCreated
         });
-        fireAlert("success", "Success!", entryFee+" Zany has been credited to your wallet.");
+        fireAlert("success", "Success!", (entryFee / (10**18))+" Zany has been credited to your wallet.");
         activateButton("requestBtn");
     } catch(err) {
         console.log(err, err.message);
