@@ -1082,7 +1082,7 @@ function loggedOut(loginout=false) {
 
 async function init() {
   try { 
-    document.getElementsByClassName("contractAddress").innerText = contractAddress;
+    document.getElementById("contractAddress").innerText = contractAddress;
     tokenMetaData();
     let user = Moralis.User.current();
     if (user) {
