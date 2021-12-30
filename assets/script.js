@@ -6,7 +6,7 @@ Moralis.start({
   appId
 });
 var statuses = ["Open", "Closed", "Finished"], numberOfGamesCreated = 0;
-var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAddress = "0x0bcb06AF2710dF49d7ce11120E5d0fe3109046cc",
+var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAddress = "0xb6747a762Ea84FA665aD127647E6e068D7f63748",
   ABI = [
 	{
 		"inputs": [],
@@ -409,6 +409,19 @@ var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAd
 	{
 		"inputs": [],
 		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_game",
+				"type": "uint256"
+			}
+		],
+		"name": "requestForFunds",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -1124,6 +1137,34 @@ async function pickNumber() {
   }
 }
 
+async function requestForFunds() {
+    try{
+        disableButton("requestBtn");
+        const payload = await interactWithSmartContract("requestForFunds", {
+            _gameID: numberOfGamesCreated
+        });
+        activateButton("requestBtn");
+    } catch(err) {
+        console.log(err, err.message);
+        activateButton("requestBtn");
+        throw err
+    }
+}
+
+var buttonText = {};
+function disableButton(varia) {
+    let button = document.getElementById(varia);
+    buttonText[varia] = button.innerText;
+    button.disabled = true;
+    button.innerText = "Loading...";
+}
+
+function activateButton(varia) {
+    let button = document.getElementById(varia);
+    button.innerText = buttonText[varia]
+    button.disabled = false;
+}
+
 function resetInput() {
   document.getElementById("yourNumber").value = '';
 }
@@ -1164,3 +1205,5 @@ init();
 document.getElementById("loginBtn").onclick = login;
 document.getElementById("logoutBtn").onclick = logOut;
 document.getElementById("submitBtn").onclick = pickNumber;
+document.getElementById("requestBtn").onclick = requestForFunds;
+document.getElementsByClassName("contractAddress").innerHTML = contractAddress;
