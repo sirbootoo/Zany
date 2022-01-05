@@ -1032,17 +1032,23 @@ var Web3, Contract, User, walletAddress, collectionAddress, entryFee, contractAd
 async function login() {
   try {
     let user = Moralis.User.current();
+	let options = {
+		signingMessage: "Welcome to Zany Town",
+	}
     if (!user) {
-      	user = await Moralis.authenticate({
-          	signingMessage: "Welcome to Zany Town",
-		  	provider: "walletconnect", 
-			mobileLinks: [
-				"Rainbow",
-				"MetaMask",
-				"Argent",
-				"Trust",
-			] 
-        })
+		if(deviceOS()) {
+			options = {
+				...options,
+				provider: "walletconnect", 
+				mobileLinks: [
+					"Rainbow",
+					"MetaMask",
+					"Argent",
+					"Trust",
+				] 
+			}
+		}
+      	user = await Moralis.authenticate(options)
         .then(function(user) {
           User = user;
           walletAddress = user.get("ethAddress");
@@ -1103,6 +1109,30 @@ async function init() {
   } catch (err) {
     console.log(err, err.message);
   }
+}
+
+function deviceOS() {
+	var useragent = navigator.userAgent;
+	
+	if(useragent.match(/Android/i)) {
+		return 'android';
+	} else if(useragent.match(/webOS/i)) {
+		return 'webos';
+	} else if(useragent.match(/iPhone/i)) {
+		return 'iphone';
+	} else if(useragent.match(/iPod/i)) {
+		return 'ipod';
+	} else if(useragent.match(/iPad/i)) {
+		return 'ipad';
+	} else if(useragent.match(/Windows Phone/i)) {
+		return 'windows phone';
+	} else if(useragent.match(/SymbianOS/i)) {
+		return 'symbian';
+	} else if(useragent.match(/RIM/i) || useragent.match(/BB/i)) {
+		return 'blackberry';
+	} else {
+		return false;
+	}
 }
 
 async function tokenMetaData() {
