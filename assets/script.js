@@ -1036,6 +1036,12 @@ async function login() {
       	user = await Moralis.authenticate({
           	signingMessage: "Welcome to Zany Town",
 		  	provider: "walletconnect", 
+			mobileLinks: [
+				"Rainbow",
+				"MetaMask",
+				"Argent",
+				"Trust",
+			] 
         })
         .then(function(user) {
           User = user;
